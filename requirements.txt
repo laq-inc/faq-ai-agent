@@ -1,0 +1,4 @@
+fastapi
+uvicorn[standard]
+psycong[]binary
+python-dotenv
