@@ -25,19 +25,22 @@
 
 # Roadmap
 
-| Step | 内容                    |
-| ---- | --------------------- |
-| 1    | Docker開発環境構築          |
-| 2    | FastAPI API開発         |
-| 3    | PostgreSQL + pgvector |
-| 4    | RAG実装                 |
-| 5    | テスト実装                 |
-| 6    | Claude Codeローカルレビュー   |
-| 7    | GitHub Actions CI     |
-| 8    | Claude自動レビュー          |
-| 9    | AIエージェント化             |
-| 10   | Kubernetes化           |
-| 11   | GitHub公開              |
+| Step | 内容                        |
+| ---- | ------------------------- |
+| 1    | Docker開発環境構築              |
+| 2    | FastAPI API開発             |
+| 3    | PostgreSQL + pgvector     |
+| 4    | RAG実装                     |
+| 5    | テスト実装（pytest）             |
+| 6    | Dev Container導入           |
+| 7    | コード品質改善（ruff / formatter） |
+| 8    | Claude Codeローカルレビュー       |
+| 9    | GitHub Actions CI         |
+| 10   | Claude自動レビュー              |
+| 11   | AIエージェント化                 |
+| 12   | Kubernetes化               |
+| 13   | GitHub公開                  |
+
 
 ---
 

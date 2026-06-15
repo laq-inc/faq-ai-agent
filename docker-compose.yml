@@ -11,7 +11,7 @@ services:
       - db
 
   db:
-    image: pgvector/pgvector/r16
+    image: pgvector/pgvector:pg16
     ports:
       - "5432:5432"
     environment:
@@ -21,4 +21,5 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  volumes: postgres_data
+volumes:
+  postgres_data:
