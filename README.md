@@ -1,22 +1,54 @@
-# RAG Agent Review App
+# FAQ AI Agent
 
-社内FAQを検索できるRAGアプリケーションです。
+A production-oriented AI application project for learning modern backend architecture and AI development.
 
-本プロジェクトでは、RAG実装だけでなく、Claude Codeによるコードレビュー、自動レビュー、AIエージェント化、Kubernetesデプロイまでを学習します。
+This project is not only about building a RAG application, but also about learning:
+
+* DDD (Domain-Driven Design)
+* Clean Architecture
+* Modular Monolith
+* Event-Driven Architecture
+* Microservices
+* AI Agents
+* Claude Code Review
+* GitHub Actions CI/CD
+* Kubernetes
+
+The goal is to build a practical system that can be used as a portfolio and serve as preparation for real-world AI development projects.
+
+---
+
+# Overview
+
+FAQ AI Agent is an AI-powered FAQ platform that enables users to search company knowledge using RAG (Retrieval-Augmented Generation).
+
+The project evolves step by step from a simple RAG application into a production-ready platform with:
+
+* AI Agent capabilities
+* Automated code reviews
+* CI/CD pipelines
+* Kubernetes deployment
+* Microservice architecture
 
 ---
 
 # Goal
 
-以下の技術を組み合わせた実践的なAIアプリケーションを構築します。
+Build a practical AI application using the following technologies:
 
-* Docker
+* Python
 * FastAPI
 * PostgreSQL
 * pgvector
 * OpenAI API
 * RAG
-* AI Agent
+* AI Agents
+* Docker
+* DDD
+* Clean Architecture
+* Modular Monolith
+* Event-Driven Architecture
+* Microservices
 * Claude Code
 * GitHub Actions
 * Kubernetes
@@ -25,26 +57,47 @@
 
 # Roadmap
 
-| Step | 内容                        |
-| ---- | ------------------------- |
-| 1    | Docker開発環境構築              |
-| 2    | FastAPI API開発             |
-| 3    | PostgreSQL + pgvector     |
-| 4    | RAG実装                     |
-| 5    | テスト実装（pytest）             |
-| 6    | Dev Container導入           |
-| 7    | コード品質改善（ruff / formatter） |
-| 8    | Claude Codeローカルレビュー       |
-| 9    | GitHub Actions CI         |
-| 10   | Claude自動レビュー              |
-| 11   | AIエージェント化                 |
-| 12   | Kubernetes化               |
-| 13   | GitHub公開                  |
-
+| Step | Description                                 |
+| ---- | ------------------------------------------- |
+| 1    | Docker Development Environment              |
+| 2    | FastAPI API Development                     |
+| 3    | PostgreSQL + pgvector                       |
+| 4    | RAG Implementation                          |
+| 5    | Testing with pytest                         |
+| 6    | Dev Container Setup                         |
+| 7    | Code Quality Improvement (ruff / formatter) |
+| 8    | Claude Code Local Review                    |
+| 9    | GitHub Actions CI                           |
+| 10   | Claude Automated Review                     |
+| 11   | AI Agent Implementation                     |
+| 12   | Kubernetes Deployment                       |
+| 13   | GitHub Publication                          |
+| 14   | Modular Monolith Refactoring                |
+| 15   | Event-Driven Architecture                   |
+| 16   | Microservices Migration                     |
+| 17   | API Gateway Integration                     |
+| 18   | Message Broker Integration                  |
+| 19   | Kubernetes Operation for Microservices      |
+| 20   | Distributed Tracing & Monitoring            |
 
 ---
 
-# Architecture
+# Current Architecture
+
+```txt
+faq-ai-agent/
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+├── .env.example
+├── README.md
+└── app/
+    └── main.py
+```
+
+---
+
+# Target Architecture
 
 ```txt
 faq-ai-agent/
@@ -55,29 +108,34 @@ faq-ai-agent/
 ├── README.md
 ├── CLAUDE.md
 ├── REVIEW.md
+│
 ├── app/
-│   ├── main.py
 │   ├── domain/
 │   ├── usecase/
 │   ├── infrastructure/
-│   └── presentation/
+│   ├── presentation/
+│   └── shared/
+│
 ├── tests/
+│
 ├── .claude/
 │   └── commands/
 │       ├── review.md
 │       ├── rag-review.md
 │       └── agent-review.md
+│
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml
 │       └── claude-review.yml
+│
 └── k8s/
     ├── namespace.yaml
     ├── deployment.yaml
     ├── service.yaml
     ├── configmap.yaml
     ├── secret.yaml
-    └── postgres.yamlå
+    └── postgres.yaml
 ```
 
 ---
@@ -85,15 +143,15 @@ faq-ai-agent/
 # RAG Flow
 
 ```txt
-ユーザー質問
+User Question
       ↓
-FAQ検索
+Vector Search
       ↓
-関連ドキュメント取得
+Related Documents Retrieval
       ↓
-OpenAIへ問い合わせ
+OpenAI API
       ↓
-回答生成
+Generated Answer
 ```
 
 ---
@@ -101,67 +159,170 @@ OpenAIへ問い合わせ
 # Agent Flow
 
 ```txt
-ユーザー依頼
+User Request
       ↓
-意図解析
+Intent Analysis
       ↓
-実行ツール選択
+Tool Selection
       ↓
-ツール実行
+Tool Execution
       ↓
-結果返却
+Response Generation
 ```
 
 ---
 
 # Use Cases
 
-### FAQ検索
+## FAQ Search
+
+Input:
 
 ```txt
-有給申請の方法を教えて
+How do I apply for paid leave?
 ```
 
-↓
+Process:
 
 ```txt
-FAQ検索
-→ 回答生成
+FAQ Search
+→ Retrieve Related Documents
+→ Generate Answer
 ```
 
-### FAQ登録
+---
+
+## FAQ Registration
+
+Input:
 
 ```txt
-このFAQを追加して
+Add this FAQ
 ```
 
-↓
+Process:
 
 ```txt
-FAQ登録
-→ Embedding生成
-→ DB保存
+FAQ Registration
+→ Generate Embedding
+→ Save to Database
 ```
 
-### 類似FAQ検索
+---
+
+## Similar FAQ Search
+
+Input:
 
 ```txt
-似た質問があるか確認して
+Find similar questions
 ```
 
-↓
+Process:
 
 ```txt
-類似FAQ検索
-→ 結果表示
+Similarity Search
+→ Display Results
 ```
+
+---
+
+# Development Principles
+
+## Domain-Driven Design (DDD)
+
+The project follows DDD principles:
+
+* Entity
+* Value Object
+* Repository
+* Domain Service
+* Aggregate
+
+---
+
+## Clean Architecture
+
+Dependency direction:
+
+```txt
+Presentation
+      ↓
+UseCase
+      ↓
+Repository Interface
+      ↓
+Infrastructure
+```
+
+Business rules do not depend on frameworks or databases.
+
+---
+
+## Modular Monolith
+
+The application will first be structured as a modular monolith.
+
+```txt
+modules/
+├── faq
+├── document
+├── embedding
+├── chat
+└── auth
+```
+
+Each module communicates through well-defined interfaces.
+
+---
+
+## Microservices
+
+After the modular monolith stage, modules will be extracted into independent services.
+
+```txt
+API Gateway
+      │
+ ┌────┼────┐
+ │    │    │
+FAQ Chat Auth
+ │
+Kafka
+ │
+Embedding
+```
+
+---
+
+# Future Enhancements
+
+* Multi-document RAG
+* Hybrid Search
+* Agent Memory
+* Tool Calling
+* Multi-Agent Architecture
+* Observability
+* Auto Scaling
+* GitOps Deployment
+* ArgoCD Integration
 
 ---
 
 # Final Deliverables
 
-* 社内FAQ RAGチャット
-* FAQ管理AIエージェント
-* Claude Codeレビュー環境
-* GitHub Actions自動レビュー
-* Kubernetesデプロイ環境
+* FAQ RAG Chat System
+* FAQ Management AI Agent
+* DDD Sample Application
+* Clean Architecture Sample
+* Modular Monolith Sample
+* Microservices Sample
+* Claude Code Review Environment
+* GitHub Actions CI/CD
+* Kubernetes Deployment Environment
+* Production-Oriented AI Application Portfolio
+
+---
+
+# License
+
+MIT License
