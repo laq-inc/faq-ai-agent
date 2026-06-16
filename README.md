@@ -82,21 +82,6 @@ Build a practical AI application using the following technologies:
 
 ---
 
-# Current Architecture
-
-```txt
-faq-ai-agent/
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-├── .env.example
-├── README.md
-└── app/
-    └── main.py
-```
-
----
-
 # Target Architecture
 
 ```txt
@@ -246,13 +231,17 @@ The project follows DDD principles:
 Dependency direction:
 
 ```txt
-Presentation
+Adapter
       ↓
 UseCase
       ↓
 Repository Interface
-      ↓
+      ↑
 Infrastructure
+      ↓
+PostgreSQL
+      ↓
+pgvector
 ```
 
 Business rules do not depend on frameworks or databases.
