@@ -1,10 +1,23 @@
 from fastapi import FastAPI
+from sqlalchemy import text
 
 from app.api.v1.faq_router import router as faq_router
+from app.infrastructure.database import engine
+from app.infrastructure.models.base import Base
+from app.infrastructure.models.faq_model import FAQModel
+from app.infrastructure.models.knowledge_chunk_model import KnowledgeChunkModel
 
 app = FastAPI(title="FAQ AI Agent")
 
 app.include_router(faq_router)
+
+
+@app.on_event("startup")
+def on_startup() -> None:
+    with engine.begin() as conn:
+        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+
+    Base.metadata.create_all(bind=engine)
 
 
 @app.get("/health")

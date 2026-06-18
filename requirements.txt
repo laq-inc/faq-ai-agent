@@ -2,3 +2,6 @@ fastapi
 uvicorn[standard]
 psycopg[binary]
 python-dotenv
+sqlalchemy>=2.0
+psycopg[binary]>=3.2
+pgvector>=0.3
