@@ -15,7 +15,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: rag_app
+      POSTGRES_DB: faq_ai_agent
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
