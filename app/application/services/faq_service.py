@@ -1,5 +1,5 @@
-from app.domain.faq import FAQ
-from app.domain.faq_repository import FAQRepository
+from app.domain.entities.faq import FAQ
+from app.domain.repositories.faq_repository import FAQRepository
 from app.schemas.faq_schema import FAQCreateRequest
 
 

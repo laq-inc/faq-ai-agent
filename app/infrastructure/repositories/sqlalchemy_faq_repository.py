@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from app.domain.faq import FAQ
-from app.domain.faq_repository import FAQRepository
+from app.domain.entities.faq import FAQ
+from app.domain.repositories.faq_repository import FAQRepository
 from app.infrastructure.models.faq_model import FAQModel
 
 

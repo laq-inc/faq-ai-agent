@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
-from app.application.faq_service import FAQService
+from app.application.services.faq_service import FAQService
 from app.infrastructure.database import get_db
 from app.infrastructure.repositories.sqlalchemy_faq_repository import (
     SQLAlchemyFAQRepository,

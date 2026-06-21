@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from app.domain.faq import FAQ
+from app.domain.entities.faq import FAQ
 
 
 class FAQRepository(ABC):
