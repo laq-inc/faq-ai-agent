@@ -9,6 +9,8 @@ services:
       - .env
     depends_on:
       - db
+    environment:
+      - PYTHONPATH=/app
 
   db:
     image: pgvector/pgvector:pg16

@@ -21,7 +21,7 @@ class SQLAlchemyFAQRepository(FAQRepository):
             for faq_model in faq_models
         ]
 
-    def create(self, faq: FAQ) -> FAQ:
+    def save(self, faq: FAQ) -> FAQ:
         faq_model = FAQModel(
             question=faq.question,
             answer=faq.answer,

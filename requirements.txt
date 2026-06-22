@@ -7,3 +7,4 @@ psycopg[binary]>=3.2
 pgvector>=0.3
 openai
 pgvector
+pytest

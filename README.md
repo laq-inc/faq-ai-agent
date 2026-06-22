@@ -95,6 +95,8 @@ faq-ai-agent/
 ├── REVIEW.md
 │
 ├── app/
+│   ├── api/
+│   ├── application/
 │   ├── domain/
 │   ├── usecase/
 │   ├── infrastructure/

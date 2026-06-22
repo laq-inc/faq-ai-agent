@@ -9,5 +9,5 @@ class FAQRepository(ABC):
         pass
 
     @abstractmethod
-    def create(self, faq: FAQ) -> FAQ:
+    def save(self, faq: FAQ) -> FAQ:
         pass

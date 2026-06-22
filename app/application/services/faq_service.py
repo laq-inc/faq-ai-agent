@@ -17,4 +17,4 @@ class FAQService:
             answer=request.answer,
         )
 
-        return self._faq_repository.create(faq)
+        return self._faq_repository.save(faq)
