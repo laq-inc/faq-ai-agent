@@ -314,6 +314,35 @@ Embedding
 
 ---
 
+## Development
+
+### Run tests
+
+```bash
+pytest
+```
+
+### Run lint
+
+```bash
+ruff check .
+```
+
+### Check formatting
+
+```bash
+ruff format --check .
+```
+
+### Auto-fix code style
+
+```bash
+ruff check . --fix
+ruff format .
+```
+
+---
+
 # License
 
 MIT License
