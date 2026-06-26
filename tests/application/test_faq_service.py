@@ -1,6 +1,7 @@
+from tests.fakes.fake_faq_repository import FakeFAQRepository
+
 from app.application.services.faq_service import FAQService
 from app.schemas.faq_schema import FAQCreateRequest
-from tests.fakes.fake_faq_repository import FakeFAQRepository
 
 
 def test_create_faqs() -> None:

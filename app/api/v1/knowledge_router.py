@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, Query, status
 
 from app.api.dependencies import get_knowledge_service
 from app.application.services.knowledge_service import KnowledgeService
-
 from app.schemas.knowledge_schema import (
     KnowledgeCreateRequest,
     KnowledgeResponse,

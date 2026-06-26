@@ -1,9 +1,10 @@
-from app.application.services.knowledge_service import KnowledgeService
-from app.application.services.rag_chat_service import RAGChatService
-from app.domain.entities.knowledge_chunk import KnowledgeChunk
 from tests.fakes.fake_embedding_service import FakeEmbeddingService
 from tests.fakes.fake_knowledge_repository import FakeKnowledgeRepository
 from tests.fakes.fake_llm_service import FakeLLMService
+
+from app.application.services.knowledge_service import KnowledgeService
+from app.application.services.rag_chat_service import RAGChatService
+from app.domain.entities.knowledge_chunk import KnowledgeChunk
 
 
 def test_rag_chat_returns_answer_with_sources() -> None:
