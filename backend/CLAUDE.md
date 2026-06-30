@@ -1,4 +1,4 @@
-# faq-ai-agent Claude Code Guide
+# faq-ai-agent Backend Claude Code Guide
 
 ## Project Overview
 

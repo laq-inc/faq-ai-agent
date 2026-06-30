@@ -19,15 +19,15 @@ def chat(
     request: ChatRequest,
     rag_chat_service: RAGChatService = Depends(get_rag_chat_service),
 ) -> ChatResponse:
-    answer, sources = rag_chat_service.chat(question=request.question)
+    answer, knowledgeChunks = rag_chat_service.chat(question=request.question)
     return ChatResponse(
         answer=answer,
-        sources=[
+        knowledgeChunks=[
             ChatSourceResponse(
-                id=source.id,
-                content=source.content,
-                source=source.source,
+                id=chunk.id,
+                content=chunk.content,
+                source=chunk.source,
             )
-            for source in sources
+            for chunk in knowledgeChunks
         ],
     )
