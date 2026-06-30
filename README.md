@@ -1,6 +1,8 @@
 # FAQ AI Agent
 
-A production-oriented AI application project for learning modern backend architecture and AI development.
+FAQ AI Agent is a full-stack AI-powered knowledge platform that enables users to search and manage company knowledge using Retrieval-Augmented Generation (RAG).
+
+The project includes a modern web frontend built with Next.js and TypeScript, and a production-oriented backend built with FastAPI and PostgreSQL.
 
 This project is not only about building a RAG application, but also about learning:
 
@@ -20,65 +22,102 @@ The goal is to build a practical system that can be used as a portfolio and serv
 
 # Overview
 
-FAQ AI Agent is an AI-powered FAQ platform that enables users to search company knowledge using RAG (Retrieval-Augmented Generation).
+FAQ AI Agent evolves from a simple RAG application into a production-ready full-stack AI platform.
 
-The project evolves step by step from a simple RAG application into a production-ready platform with:
+Throughout the roadmap, the project demonstrates:
 
-* AI Agent capabilities
-* Automated code reviews
-* CI/CD pipelines
-* Kubernetes deployment
-* Microservice architecture
+- Modern backend development with FastAPI
+- Full-stack web development with Next.js
+- Retrieval-Augmented Generation (RAG)
+- AI Agent implementation
+- DDD and Clean Architecture
+- Cloud-native deployment with Kubernetes
 
 ---
 
 # Goal
 
-Build a practical AI application using the following technologies:
+The goal of this project is to build a production-oriented AI application that demonstrates:
 
-* Python
-* FastAPI
-* PostgreSQL
-* pgvector
-* OpenAI API
-* RAG
-* AI Agents
-* Docker
-* DDD
-* Clean Architecture
-* Modular Monolith
-* Event-Driven Architecture
-* Microservices
-* Claude Code
-* GitHub Actions
-* Kubernetes
+- Full-stack development
+- Modern backend architecture
+- AI application development
+- Cloud-native deployment
+- Scalable software architecture
+
+while serving as a practical portfolio for AI and backend engineering roles.
 
 ---
 
 # Roadmap
 
-| Step | Description                                 |
-| ---- | ------------------------------------------- |
-| 1    | Docker Development Environment              |
-| 2    | FastAPI API Development                     |
-| 3    | PostgreSQL + pgvector                       |
-| 4    | RAG Implementation                          |
-| 5    | Testing with pytest                         |
-| 6    | Dev Container Setup                         |
-| 7    | Code Quality Improvement (ruff / formatter) |
-| 8    | Claude Code Local Review                    |
-| 9    | GitHub Actions CI                           |
-| 10   | Claude Automated Review                     |
-| 11   | AI Agent Implementation                     |
-| 12   | Kubernetes Deployment                       |
-| 13   | GitHub Publication                          |
-| 14   | Modular Monolith Refactoring                |
-| 15   | Event-Driven Architecture                   |
-| 16   | Microservices Migration                     |
-| 17   | API Gateway Integration                     |
-| 18   | Message Broker Integration                  |
-| 19   | Kubernetes Operation for Microservices      |
-| 20   | Distributed Tracing & Monitoring            |
+| Step | Description |
+| ---- | ----------- |
+| 1 | Docker Development Environment |
+| 2 | FastAPI API Development |
+| 3 | PostgreSQL + pgvector |
+| 4 | RAG Implementation |
+| 5 | Testing with pytest |
+| 6 | Dev Container Setup |
+| 7 | Code Quality Improvement (ruff / formatter) |
+| 8 | Claude Code Local Review |
+| 9 | Frontend Setup with Next.js / TypeScript |
+| 10 | Frontend UI Enhancement |
+| 11 | UI Implementation for FAQ / Knowledge / Chat |
+| 12 | GitHub Actions CI |
+| 13 | Claude Automated Review |
+| 14 | GitHub Publication |
+| 15 | AI Agent Implementation |
+| 16 | Kubernetes Deployment |
+| 17 | Modular Monolith Refactoring |
+| 18 | Event-Driven Architecture |
+| 19 | Microservices Migration |
+| 20 | API Gateway Integration |
+| 21 | Message Broker Integration |
+| 22 | Kubernetes Operation for Microservices |
+| 23 | Distributed Tracing & Monitoring |
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+## Backend
+
+- FastAPI
+- Python
+- SQLAlchemy
+
+## Database
+
+- PostgreSQL
+- pgvector
+
+## AI
+
+- OpenAI API
+- Embedding
+- RAG
+
+## DevOps
+
+- Docker
+- GitHub Actions
+- Kubernetes
+
+## Architecture
+
+- DDD
+- Clean Architecture
+- Modular Monolith
+- Event-Driven Architecture
+- Microservices
 
 ---
 
@@ -86,43 +125,55 @@ Build a practical AI application using the following technologies:
 
 ```txt
 faq-ai-agent/
+├── backend/
+│   ├── app/
+│   ├── tests/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── pyproject.toml
+│   ├── CLAUDE.md
+│   └── README.md
+│
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── types/
+│   ├── public/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── next.config.ts
+│   └── README.md
+│
 ├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
 ├── .env.example
 ├── README.md
-├── CLAUDE.md
-├── REVIEW.md
-│
-├── app/
-│   ├── api/
-│   ├── application/
-│   ├── domain/
-│   ├── usecase/
-│   ├── infrastructure/
-│   ├── presentation/
-│   └── shared/
-│
-├── tests/
-│
-├── .claude/
-│   └── commands/
-│       ├── review.md
-│       ├── rag-review.md
-│       └── agent-review.md
 │
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml
-│       └── claude-review.yml
 │
 └── k8s/
-    ├── namespace.yaml
-    ├── deployment.yaml
-    ├── service.yaml
-    ├── configmap.yaml
-    ├── secret.yaml
-    └── postgres.yaml
+```
+
+---
+
+# Full Stack Architecture
+
+```txt
+                +----------------------+
+                |    Next.js Frontend  |
+                +----------+-----------+
+                           |
+                      REST API
+                           |
+                +----------v-----------+
+                |       FastAPI        |
+                | DDD / Clean Arch.    |
+                +----+------------+----+
+                     |            |
+                     |            |
+        PostgreSQL + pgvector   OpenAI API
+                               (LLM / Embeddings)
 ```
 
 ---
@@ -233,17 +284,25 @@ The project follows DDD principles:
 Dependency direction:
 
 ```txt
-Adapter
-      ↓
-UseCase
-      ↓
-Repository Interface
-      ↑
+Presentation (FastAPI)
+        │
+        ▼
+Application (Use Cases)
+        │
+        ▼
+Domain
+├── Entity
+├── Value Object
+├── Repository Interface
+└── Domain Service
+        ▲
+        │ implements
+        │
 Infrastructure
-      ↓
-PostgreSQL
-      ↓
-pgvector
+├── SQLAlchemy Repository
+├── PostgreSQL
+├── pgvector
+└── OpenAI API
 ```
 
 Business rules do not depend on frameworks or databases.
@@ -285,6 +344,30 @@ Embedding
 
 ---
 
+# Frontend Features
+
+* FAQ List
+* FAQ Registration
+* Knowledge Search
+* AI Chat Interface
+* Responsive UI
+* Type-safe API Communication
+
+---
+
+# Backend Features
+
+* REST API
+* RAG Search
+* Embedding Generation
+* Vector Similarity Search
+* DDD
+* Clean Architecture
+* Repository Pattern
+* AI Agent
+
+---
+
 # Future Enhancements
 
 * Multi-document RAG
@@ -301,8 +384,11 @@ Embedding
 
 # Final Deliverables
 
+* Full-Stack AI Application
+* Next.js Frontend
+* FastAPI Backend
 * FAQ RAG Chat System
-* FAQ Management AI Agent
+* AI Agent
 * DDD Sample Application
 * Clean Architecture Sample
 * Modular Monolith Sample
@@ -310,7 +396,7 @@ Embedding
 * Claude Code Review Environment
 * GitHub Actions CI/CD
 * Kubernetes Deployment Environment
-* Production-Oriented AI Application Portfolio
+* Production-Oriented AI Portfolio
 
 ---
 
@@ -340,6 +426,32 @@ ruff format --check .
 ruff check . --fix
 ruff format .
 ```
+
+---
+
+# Screenshots
+
+## Home
+
+(TODO)
+
+## Knowledge Search
+
+(TODO)
+
+## AI Chat
+
+(TODO)
+
+## Knowledge Management
+
+(TODO)
+
+---
+
+# Demo
+
+(TODO)
 
 ---
 

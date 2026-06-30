@@ -13,4 +13,4 @@ class ChatSourceResponse(BaseModel):
 
 class ChatResponse(BaseModel):
     answer: str
-    sources: list[ChatSourceResponse]
+    knowledgeChunks: list[ChatSourceResponse]
