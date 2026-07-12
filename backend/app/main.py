@@ -1,3 +1,7 @@
+import os
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
@@ -8,7 +12,25 @@ from app.api.v1.knowledge_router import router as knowledge_router
 from app.infrastructure.database import engine
 from app.infrastructure.models.base import Base
 
-app = FastAPI(title="FAQ AI Agent")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
+    # Fail fast at startup instead of on the first request that touches
+    # OpenAI (EmbeddingService/LLMService read this lazily per-request).
+    if not os.getenv("OPENAI_API_KEY"):
+        raise RuntimeError("OPENAI_API_KEY environment variable is not set")
+
+    with engine.begin() as conn:
+        # Must run before create_all: the Vector column type requires the
+        # pgvector extension to already exist in the database.
+        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+
+    Base.metadata.create_all(bind=engine)
+
+    yield
+
+
+app = FastAPI(title="FAQ AI Agent", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -20,14 +42,6 @@ app.add_middleware(
 app.include_router(faq_router)
 app.include_router(knowledge_router)
 app.include_router(chat_router)
-
-
-@app.on_event("startup")
-def on_startup() -> None:
-    with engine.begin() as conn:
-        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-
-    Base.metadata.create_all(bind=engine)
 
 
 @app.get("/health")

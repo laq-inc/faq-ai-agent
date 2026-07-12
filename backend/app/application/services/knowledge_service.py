@@ -12,9 +12,7 @@ class KnowledgeService:
         self._embedding_service = embedding_service
         self._knowledge_chunk_repository = knowledge_chunk_repository
 
-    def create_knowledge(
-        self, content: str, source: str | None = None
-    ) -> KnowledgeChunk:
+    def create_knowledge(self, content: str, source: str) -> KnowledgeChunk:
         embedding = self._embedding_service.embed_text(content)
 
         knowledge_chunk = KnowledgeChunk(

@@ -25,6 +25,8 @@ class LLMService:
                     "content": (f"context:\n{context}\n\nquestion:\n{question}"),
                 },
             ],
+            # Deterministic output so answers stay strictly grounded in the
+            # given context, per the system prompt above.
             temperature=0,
         )
         return response.choices[0].message.content or ""

@@ -32,5 +32,5 @@ def test_rag_chat_returns_answer_with_sources() -> None:
 
     answer, sources = service.chat("pgvectorとは何ですか？")
 
-    assert answer is not None
+    assert answer == "pgvectorとは、PostgreSQLでベクトル検索を行うための拡張機能です。"
     assert len(sources) == 1
