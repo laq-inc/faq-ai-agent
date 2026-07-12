@@ -10,6 +10,8 @@ __pycache__/
 .ruff_cache/
 .venv/
 venv/
+.coverage
+htmlcov/
 
 # Node / Next.js
 node_modules/
@@ -21,8 +23,13 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# VS Code
+.vscode/
+
 # Claude Code
 .claude/
 
 # OS
 .DS_Store
+.AppleDouble
+.LSOverride

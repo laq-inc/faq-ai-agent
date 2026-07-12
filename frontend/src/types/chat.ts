@@ -1,10 +1,14 @@
-import type { KnowledgeChunk } from "@/types/knowledge";
+import { z } from "zod";
+import { knowledgeChunkSchema } from "@/types/knowledge";
 
-export type ChatRequest = {
-	question: string;
-};
+export const chatResponseSchema = z.object({
+	answer: z.string().max(500),
+	knowledgeChunks: z.array(knowledgeChunkSchema),
+});
 
-export type ChatResponse = {
-	answer: string;
-	knowledgeChunks: KnowledgeChunk[];
-};
+export const chatRequestSchema = z.object({
+	question: z.string().max(200),
+});
+
+export type ChatRequest = z.infer<typeof chatRequestSchema>;
+export type ChatResponse = z.infer<typeof chatResponseSchema>;

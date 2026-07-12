@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { ChatAnswer } from "@/components/chat/ChatAnswer";
+import { ChatError } from "@/components/chat/ChatError";
+import { ChatForm } from "@/components/chat/ChatForm";
+import { ChatSources } from "@/components/chat/ChatSources";
 import { postChat } from "@/services/chatApi";
 import type { KnowledgeChunk } from "@/types/knowledge";
 
@@ -9,10 +13,9 @@ export default function Home() {
 	const [answer, setAnswer] = useState("");
 	const [knowledgeChunks, setKnowledgeChunks] = useState<KnowledgeChunk[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-	async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
-		event.preventDefault();
-
+	async function handleSubmit(): Promise<void> {
 		if (!question.trim()) {
 			return;
 		}
@@ -20,62 +23,37 @@ export default function Home() {
 		setIsLoading(true);
 		setAnswer("");
 		setKnowledgeChunks([]);
+		setErrorMessage(null);
 
 		try {
 			const response = await postChat({ question });
 			setAnswer(response.answer);
 			setKnowledgeChunks(response.knowledgeChunks);
 		} catch {
-			setAnswer("エラーが発生しました。");
+			setErrorMessage(
+				"回答の取得に失敗しました。時間をおいて再度お試しください。",
+			);
 		} finally {
 			setIsLoading(false);
 		}
 	}
 
 	return (
-		<main>
+		<main className="mx-auto flex w-full min-h-screen max-w-4xl flex-col gap-6 p-8">
 			<h1>FAQ AI Agent</h1>
 
-			<section>
-				<h2>チャット</h2>
+			<ChatForm
+				question={question}
+				isLoading={isLoading}
+				onQuestionChange={setQuestion}
+				onSubmit={handleSubmit}
+			/>
 
-				<h2>質問</h2>
+			{errorMessage && <ChatError message={errorMessage} />}
 
-				<form onSubmit={handleSubmit}>
-					<textarea
-						value={question}
-						onChange={(event) => setQuestion(event.target.value)}
-						placeholder="質問を入力してください"
-					/>
+			<ChatAnswer answer={answer} />
 
-					<br />
-
-					<button type="submit" disabled={isLoading}>
-						{isLoading ? "送信中..." : "送信"}
-					</button>
-				</form>
-
-				{answer && (
-					<section>
-						<h2>回答</h2>
-						<p>{answer}</p>
-
-						<br />
-
-						<h2>参照したナレッジ</h2>
-						<div>
-							{knowledgeChunks.map((chunk) => (
-								<div key={chunk.id}>
-									<article>
-										<p>{chunk.content}</p>
-										<p>出典: {chunk.source}</p>
-									</article>
-								</div>
-							))}
-						</div>
-					</section>
-				)}
-			</section>
+			<ChatSources knowledgeChunks={knowledgeChunks} />
 		</main>
 	);
 }
