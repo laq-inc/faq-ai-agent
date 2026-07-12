@@ -62,8 +62,8 @@ while serving as a practical portfolio for AI and backend engineering roles.
 | 7 | Code Quality Improvement (ruff / formatter) |
 | 8 | Claude Code Local Review |
 | 9 | Frontend Setup with Next.js / TypeScript |
-| 10 | Frontend UI Enhancement |
-| 11 | UI Implementation for FAQ / Knowledge / Chat |
+| 10 | Frontend UI Refinement |
+| 11 | FAQ / Knowledge Management UI |
 | 12 | GitHub Actions CI |
 | 13 | Claude Automated Review |
 | 14 | GitHub Publication |
@@ -87,6 +87,7 @@ while serving as a practical portfolio for AI and backend engineering roles.
 - React
 - TypeScript
 - Tailwind CSS
+- Biome
 
 ## Backend
 
@@ -135,10 +136,15 @@ faq-ai-agent/
 │   └── README.md
 │
 ├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── lib/
-│   ├── types/
+│   ├── src/
+│   │   ├── app/
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   ├── features/
+│   │   ├── utils/
+│   │   ├── types/
+│   │   └── lib/
 │   ├── public/
 │   ├── package.json
 │   ├── tsconfig.json
@@ -146,6 +152,7 @@ faq-ai-agent/
 │   └── README.md
 │
 ├── docker-compose.yml
+├── Makefile
 ├── .env.example
 ├── README.md
 │
@@ -400,32 +407,78 @@ Embedding
 
 ---
 
-## Development
+# Development
 
-### Run tests
+Run the following commands from the project root.
 
-```bash
-pytest
-```
-
-### Run lint
+## Start the frontend development server
 
 ```bash
-ruff check .
+make frontend-dev
 ```
 
-### Check formatting
+The frontend is available at:
+
+```text
+http://localhost:3000
+```
+
+Stop the development server with `Ctrl + C`.
+
+## Run backend tests
 
 ```bash
-ruff format --check .
+make backend-test
 ```
 
-### Auto-fix code style
+## Validate the backend
+
+Run formatting checks, lint checks, and tests:
 
 ```bash
-ruff check . --fix
-ruff format .
+make backend-validate
 ```
+
+## Automatically fix backend code style
+
+Run Ruff auto-fix and formatting:
+
+```bash
+make backend-fix
+```
+
+## Validate the frontend
+
+Run Biome checks and create a production build:
+
+```bash
+make frontend-validate
+```
+
+Stop the frontend development server before running this command because the development server and production build both use the `frontend/.next` directory.
+
+## Validate the entire project
+
+Run all backend and frontend validations:
+
+```bash
+make validate
+```
+
+## Start the frontend production server
+
+Build and start the frontend production server:
+
+```bash
+make frontend-start
+```
+
+The frontend is available at:
+
+```text
+http://localhost:3000
+```
+
 
 ---
 
