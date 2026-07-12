@@ -28,6 +28,7 @@ pnpm-debug.log*
 
 # Claude Code
 .claude/
+.devcontainer/claude-home/claude.json
 
 # OS
 .DS_Store

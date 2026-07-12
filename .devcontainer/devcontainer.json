@@ -23,7 +23,8 @@
                 "ms-python.vscode-pylance",
                 "ms-python.pytest",
                 "charliermarsh.ruff",
-                "anthropics.claude-code"
+                "anthropics.claude-code",
+                "openai.chatgpt"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/usr/local/bin/python",

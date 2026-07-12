@@ -7,6 +7,9 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+      - codex_auth:/root/.codex
+      - claude_config:/root/.claude
+      - ./.devcontainer/claude-home/claude.json:/root/.claude.json
     env_file:
       - .env
     depends_on:
@@ -27,3 +30,5 @@ services:
 
 volumes:
   postgres_data:
+  codex_auth:
+  claude_config:
