@@ -21,6 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN npm install -g @anthropic-ai/claude-code
 
+RUN npm install -g @openai/codex
+
 COPY . .
 
 CMD [ "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
