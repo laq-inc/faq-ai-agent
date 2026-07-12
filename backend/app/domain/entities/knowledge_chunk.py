@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class KnowledgeChunk:
-    id: str | None
+    id: int | None
     content: str
-    source: str | None
+    source: str
     embedding: list[float]

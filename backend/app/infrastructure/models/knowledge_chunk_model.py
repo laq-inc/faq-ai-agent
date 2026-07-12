@@ -11,4 +11,7 @@ class KnowledgeChunkModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     content: Mapped[str] = mapped_column(Text, nullable=False)
     source: Mapped[str] = mapped_column(String(255), nullable=False)
-    embedding: Mapped[list[float] | None] = mapped_column(Vector(1536), nullable=True)
+    # 1536 matches the dimension of EmbeddingService's default model
+    # (text-embedding-3-small). Changing OPENAI_EMBEDDING_MODEL to a model
+    # with a different output dimension requires updating this value too.
+    embedding: Mapped[list[float]] = mapped_column(Vector(1536), nullable=False)

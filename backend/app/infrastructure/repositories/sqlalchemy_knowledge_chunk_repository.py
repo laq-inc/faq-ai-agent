@@ -33,6 +33,8 @@ class SQLAlchemyKnowledgeChunkRepository(KnowledgeChunkRepository):
     ) -> list[KnowledgeChunk]:
         stmt = (
             select(KnowledgeChunkModel)
+            # Cosine distance, not L2/inner product: OpenAI embeddings are
+            # designed to be compared by cosine similarity.
             .order_by(KnowledgeChunkModel.embedding.cosine_distance(embedding))
             .limit(limit)
         )

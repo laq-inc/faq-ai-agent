@@ -8,4 +8,5 @@ pgvector>=0.3
 openai
 pgvector
 pytest
+httpx2
 ruff
