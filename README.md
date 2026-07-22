@@ -1,8 +1,8 @@
 # FAQ AI Agent
 
-FAQ AI Agent is a full-stack AI-powered knowledge platform that enables users to search and manage company knowledge using Retrieval-Augmented Generation (RAG).
+FAQ AI Agent is a full-stack AI-powered knowledge platform that answers user questions using Retrieval-Augmented Generation (RAG).
 
-The project includes a modern web frontend built with Next.js and TypeScript, and a production-oriented backend built with FastAPI and PostgreSQL.
+The project focuses on building a production-ready AI knowledge assistant while learning modern backend architecture, AI agents, and cloud-native technologies.
 
 This project is not only about building a RAG application, but also about learning:
 
@@ -63,19 +63,20 @@ while serving as a practical portfolio for AI and backend engineering roles.
 | 8 | Claude Code Local Review |
 | 9 | Frontend Setup with Next.js / TypeScript |
 | 10 | Frontend UI Refinement |
-| 11 | FAQ / Knowledge Management UI |
+| 11 | Knowledge Management UI |
 | 12 | GitHub Actions CI |
 | 13 | Claude Automated Review |
-| 14 | GitHub Publication |
-| 15 | AI Agent Implementation |
-| 16 | Kubernetes Deployment |
-| 17 | Modular Monolith Refactoring |
-| 18 | Event-Driven Architecture |
-| 19 | Microservices Migration |
-| 20 | API Gateway Integration |
-| 21 | Message Broker Integration |
-| 22 | Kubernetes Operation for Microservices |
-| 23 | Distributed Tracing & Monitoring |
+| 14 | AI Review Security & Evaluation Framework |
+| 15 | GitHub Publication |
+| 16 | AI Agent Implementation |
+| 17 | Kubernetes Deployment |
+| 18 | Modular Monolith Refactoring |
+| 19 | Event-Driven Architecture |
+| 20 | Microservices Migration |
+| 21 | API Gateway Integration |
+| 22 | Message Broker Integration |
+| 23 | Kubernetes Operation for Microservices |
+| 24 | Distributed Tracing & Monitoring |
 
 ---
 
@@ -104,7 +105,8 @@ while serving as a practical portfolio for AI and backend engineering roles.
 
 - OpenAI API
 - Embedding
-- RAG
+- Retrieval-Augmented Generation (RAG)
+- AI Agents (Planned)
 
 ## DevOps
 
@@ -219,7 +221,7 @@ Response Generation
 
 # Use Cases
 
-## FAQ Search
+## Knowledge Search
 
 Input:
 
@@ -230,44 +232,45 @@ How do I apply for paid leave?
 Process:
 
 ```txt
-FAQ Search
+Knowledge Search
 → Retrieve Related Documents
 → Generate Answer
 ```
 
 ---
 
-## FAQ Registration
+## Knowledge Registration
 
 Input:
 
 ```txt
-Add this FAQ
+Add this knowledge
 ```
 
 Process:
 
 ```txt
-FAQ Registration
+Knowledge Registration
 → Generate Embedding
 → Save to Database
 ```
 
 ---
 
-## Similar FAQ Search
+## AI Chat
 
 Input:
 
 ```txt
-Find similar questions
+What is pgvector?
 ```
 
 Process:
 
 ```txt
-Similarity Search
-→ Display Results
+Retrieve Related Knowledge
+→ Generate AI Answer
+→ Display Sources
 ```
 
 ---
@@ -322,8 +325,7 @@ The application will first be structured as a modular monolith.
 
 ```txt
 modules/
-├── faq
-├── document
+├── knowledge
 ├── embedding
 ├── chat
 └── auth
@@ -340,9 +342,9 @@ After the modular monolith stage, modules will be extracted into independent ser
 ```txt
 API Gateway
       │
- ┌────┼────┐
- │    │    │
-FAQ Chat Auth
+ ┌─────────┼────────┐
+ │         │        │
+Knowledge Chat     Auth
  │
 Kafka
  │
@@ -353,8 +355,7 @@ Embedding
 
 # Frontend Features
 
-* FAQ List
-* FAQ Registration
+* Knowledge Management
 * Knowledge Search
 * AI Chat Interface
 * Responsive UI
@@ -386,6 +387,9 @@ Embedding
 * Auto Scaling
 * GitOps Deployment
 * ArgoCD Integration
+* AI Review Platform
+* AI Review Benchmark
+* AI Review Dashboard
 
 ---
 
@@ -395,6 +399,7 @@ Embedding
 * Next.js Frontend
 * FastAPI Backend
 * FAQ RAG Chat System
+* Knowledge Management
 * AI Agent
 * DDD Sample Application
 * Clean Architecture Sample
