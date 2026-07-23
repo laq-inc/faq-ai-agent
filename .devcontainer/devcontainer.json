@@ -24,7 +24,8 @@
                 "ms-python.pytest",
                 "charliermarsh.ruff",
                 "anthropics.claude-code",
-                "openai.chatgpt"
+                "openai.chatgpt",
+                "Anthropic.claude-code"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/usr/local/bin/python",
