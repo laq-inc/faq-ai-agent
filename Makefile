@@ -12,7 +12,10 @@
 	validate
 
 backend-test:
-	cd backend && python -mpytest
+	cd backend && python -mpytest \
+		--cov=app \
+		--cov-report=term-missing \
+		--cov-fail-under=70
 
 backend-lint:
 	cd backend && \
@@ -31,7 +34,10 @@ backend-validate:
 	cd backend && \
 	ruff format --check . && \
 	ruff check . && \
-	python -m pytest
+	python -m pytest \
+		--cov=app \
+		--cov-report=term-missing \
+		--cov-fail-under=70
 
 frontend-check:
 	npm --prefix frontend run check
