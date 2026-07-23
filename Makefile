@@ -12,7 +12,7 @@
 	validate
 
 backend-test:
-	cd backend && pytest
+	cd backend && python -mpytest
 
 backend-lint:
 	cd backend && \
@@ -31,7 +31,7 @@ backend-validate:
 	cd backend && \
 	ruff format --check . && \
 	ruff check . && \
-	pytest
+	python -m pytest
 
 frontend-check:
 	npm --prefix frontend run check
