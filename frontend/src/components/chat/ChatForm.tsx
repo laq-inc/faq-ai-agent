@@ -1,3 +1,5 @@
+import type { SubmitEventHandler } from "react";
+
 type ChatFormProps = {
 	question: string;
 	isLoading: boolean;
@@ -13,7 +15,7 @@ export function ChatForm({
 }: ChatFormProps) {
 	const canSubmit = !isLoading && question.trim().length > 0;
 
-	const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = (event) => {
+	const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
 		event.preventDefault();
 
 		if (!canSubmit) {
