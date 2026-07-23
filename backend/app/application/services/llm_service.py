@@ -5,7 +5,10 @@ from openai import OpenAI
 
 class LLMService:
     def __init__(self) -> None:
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.client = OpenAI(
+            api_key=os.getenv("OPENAI_API_KEY"),
+            timeout=float(os.getenv("OPENAI_TIMEOUT", "30.0")),
+        )
         self.model = os.getenv("OPENAI_CHAT_MODEL", "gpt-4.1-mini")
 
     def generate_answer(self, question: str, context: str) -> str:

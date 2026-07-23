@@ -4,8 +4,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
-      - "3000:3000"
+      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:3000:3000"
     volumes:
       - .:/app
       - codex_auth:/root/.codex
@@ -17,15 +17,18 @@ services:
       - db
     environment:
       - PYTHONPATH=/app/backend
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+    secrets:
+      - postgres_password
 
   db:
     image: pgvector/pgvector:pg16
-    ports:
-      - "5432:5432"
     environment:
-      POSTGRES_DB: faq_ai_agent
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -33,3 +36,7 @@ volumes:
   postgres_data:
   codex_auth:
   claude_config:
+  
+secrets:
+  postgres_password:
+    file: ./.secrets/postgres_password
